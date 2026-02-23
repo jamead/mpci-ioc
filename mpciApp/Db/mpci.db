@@ -82,7 +82,7 @@ record(stringout, "$(P){$(NO)}All:Off-SP") {
 
 
 
-## 20 word status from QFA
+## 20 word status from MPCI
 
 record(ai, "$(P){$(NO)}Frame:Start-I") {
     field(DTYP, "PSC Reg F32")
@@ -90,118 +90,173 @@ record(ai, "$(P){$(NO)}Frame:Start-I") {
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch1:Current-I"){
+record(ai,"$(P){$(NO)}Ch1:RegOut-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 4")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch2:Current-I"){
+record(ai,"$(P){$(NO)}Ch1:Vout-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 8")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch3:Current-I"){
+record(ai,"$(P){$(NO)}Ch1:IO-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 12")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch4:Current-I"){
+record(ai,"$(P){$(NO)}Ch2:RegOut-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 16")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch1:Cmd-I"){
+record(ai,"$(P){$(NO)}Ch2:Vout-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 20")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch2:Cmd-I"){
+record(ai,"$(P){$(NO)}Ch2:IO-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 24")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch3:Cmd-I"){
+record(ai,"$(P){$(NO)}Ch3:RegOut-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 28")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch4:Cmd-I"){
+record(ai,"$(P){$(NO)}Ch3:Vout-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 32")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Pwr:P15V-I"){
+record(ai,"$(P){$(NO)}Ch3:IO-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 36")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Pwr:N15V-I"){
+record(ai,"$(P){$(NO)}Ch4:RegOut-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 40")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Pwr:P12V-I"){
+record(ai,"$(P){$(NO)}Ch4:Vout-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 44")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Pwr:P5V-I"){
+record(ai,"$(P){$(NO)}Ch4:IO-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 48")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Temp:Front-I"){
+
+record(ai,"$(P){$(NO)}On1-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 52")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Temp:Rear-I"){
+record(ai,"$(P){$(NO)}On2-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 56")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch1:Cal-I"){
+record(ai,"$(P){$(NO)}AcOn-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 60")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch2:Cal-I"){
+record(ai,"$(P){$(NO)}Fault-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 64")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch3:Cal-I"){
+record(ai,"$(P){$(NO)}Reset-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 68")
     field(SCAN,"I/O Intr")
 }
 
-record(ai,"$(P){$(NO)}Ch4:Cal-I"){
+record(ai,"$(P){$(NO)}Ch1:Stats-I"){
     field(DTYP, "PSC Reg F32")
     field(INP , "@pscudp$(NO) 15 72")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch1:Spare-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 76")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch2:Stats-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 80")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch2:Spare-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 84")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch3:Stats-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 88")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch3:Spare-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 92")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch4:Stats-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 96")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch4:Spare-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 100")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Temp:Front-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 104")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Temp:Rear-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 108")
     field(SCAN,"I/O Intr")
 }
 
 
 record(ai,"$(P){$(NO)}Frame:End-I"){
     field(DTYP, "PSC Reg F32")
-    field(INP , "@pscudp$(NO) 15 76")
+    field(INP , "@pscudp$(NO) 15 112")
     field(SCAN,"I/O Intr")
 }
 
