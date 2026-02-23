@@ -8,31 +8,31 @@ include $(TOP)/configure/CONFIG
 #=============================
 # Build the IOC application
 
-PROD_IOC = qfa
-# pdu.dbd will be created and installed
-DBD += qfa.dbd
+PROD_IOC = mpci
+# mpci.dbd will be created and installed
+DBD += mpci.dbd
 
-# pdu.dbd will be made up from these files:
-qfa_DBD += base.dbd
+# mpci.dbd will be made up from these files:
+mpci_DBD += base.dbd
 
 # Include dbd files from all support applications:
-qfa_DBD += pscCore.dbd
+mpci_DBD += pscCore.dbd
 
 # Add all the support libraries needed by this IOC
-qfa_LIBS += pscCore 
+mpci_LIBS += pscCore 
 
 # pdu_registerRecordDeviceDriver.cpp derives from pdu.dbd
-qfa_SRCS += qfa_registerRecordDeviceDriver.cpp
+mpci_SRCS += mpci_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
-qfa_SRCS_DEFAULT += qfaMain.cpp
-qfa_SRCS_vxWorks += -nil-
+mpci_SRCS_DEFAULT += mpciMain.cpp
+mpci_SRCS_vxWorks += -nil-
 
 # Add support from base/src/vxWorks if needed
 #pdu_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
-qfa_LIBS += $(EPICS_BASE_IOC_LIBS)
+mpci_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
 
