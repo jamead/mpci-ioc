@@ -1,0 +1,408 @@
+record(bi, "$(P){$(NO)}:conn") {
+  field(DTYP, "PSC Ctrl Connected")
+  field(INP , "@pscudp$(NO)")
+  field(SCAN, "I/O Intr")
+  field(ZNAM, "Disconnected")
+  field(ONAM, "Connected")
+  field(ZSV , "MAJOR")
+}
+
+record(bo, "$(P){$(NO)}:reconn") {
+  field(DTYP, "PSC Ctrl Reconnect")
+  field(OUT , "@pscudp$(NO)")
+  field(ZNAM, "Reconnect")
+  field(ONAM, "Reconnect")
+}
+
+
+# flush send to socket
+record(bo, "$(P){$(NO)}:send") {
+  field(DTYP, "PSC Ctrl Send All")
+  field(OUT , "@pscudp$(NO)")
+  field(ZNAM, "Send")
+  field(ONAM, "Send")
+}
+
+# writes the UDP packet to the PDU to get status (1Hz)
+record(stringout, "$(P){$(NO)}:speak") {
+  field(VAL, "Status")        
+  field(DTYP, "PSC Block")
+  field(OUT , "@pscudp$(NO) 100")   
+  field(FLNK, "$(P){$(NO)}:send")
+  #field(SCAN, "1 second")
+}
+
+
+
+
+
+
+
+# writes the UDP packet to the PDU
+record(stringout, "$(P){$(NO)}Ch1:State-SP") {
+  field(DTYP, "PSC Block")
+  field(OUT , "@pscudp$(NO) 100")  
+  field(FLNK, "$(P){$(NO)}:send")
+}
+
+# writes the UDP packet to the PDU
+record(stringout, "$(P){$(NO)}Ch2:State-SP") {
+  field(DTYP, "PSC Block")
+  field(OUT , "@pscudp$(NO) 100")  
+  field(FLNK, "$(P){$(NO)}:send")
+}
+
+# writes the UDP packet to the PDU
+record(stringout, "$(P){$(NO)}Ch3:State-SP") {
+  field(DTYP, "PSC Block")
+  field(OUT , "@pscudp$(NO) 100")  
+  field(FLNK, "$(P){$(NO)}:send")
+}
+
+# writes the UDP packet to the PDU
+record(stringout, "$(P){$(NO)}Ch4:State-SP") {
+  field(DTYP, "PSC Block")
+  field(OUT , "@pscudp$(NO) 100")  
+  field(FLNK, "$(P){$(NO)}:send")
+}
+
+record(stringout, "$(P){$(NO)}All:On-SP") {
+  field(VAL, "ALL-ON")        
+  field(DTYP, "PSC Block")
+  field(OUT , "@pscudp$(NO) 100")   
+  field(FLNK, "$(P){$(NO)}:send")
+}
+
+record(stringout, "$(P){$(NO)}All:Off-SP") {
+  field(VAL, "ALL-OFF")        
+  field(DTYP, "PSC Block")
+  field(OUT , "@pscudp$(NO) 100")   
+  field(FLNK, "$(P){$(NO)}:send")
+}
+
+
+
+## 20 word status from QFA
+
+record(ai, "$(P){$(NO)}Frame:Start-I") {
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 0")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch1:Current-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 4")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch2:Current-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 8")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch3:Current-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 12")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch4:Current-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 16")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch1:Cmd-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 20")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch2:Cmd-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 24")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch3:Cmd-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 28")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch4:Cmd-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 32")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Pwr:P15V-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 36")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Pwr:N15V-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 40")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Pwr:P12V-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 44")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Pwr:P5V-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 48")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Temp:Front-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 52")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Temp:Rear-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 56")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch1:Cal-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 60")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch2:Cal-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 64")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch3:Cal-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 68")
+    field(SCAN,"I/O Intr")
+}
+
+record(ai,"$(P){$(NO)}Ch4:Cal-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 72")
+    field(SCAN,"I/O Intr")
+}
+
+
+record(ai,"$(P){$(NO)}Frame:End-I"){
+    field(DTYP, "PSC Reg F32")
+    field(INP , "@pscudp$(NO) 15 76")
+    field(SCAN,"I/O Intr")
+}
+
+
+
+#scale the Currents
+record(calc,"$(P){$(NO)}Ch1:Current") {
+    field(INPA, "$(P){$(NO)}Ch1:Current-I NPP NMS")
+    field(CALC, "(A-20000)*0.000625")
+    field(PREC, "6")
+    field(EGU,  "A")    
+    field(SCAN, "Passive")
+}
+
+record(calc,"$(P){$(NO)}Ch2:Current") {
+    field(INPA, "$(P){$(NO)}Ch2:Current-I NPP NMS")
+    field(CALC, "(A-20000)*0.000625")
+    field(PREC, "6")
+    field(EGU,  "A")    
+    field(SCAN, "Passive")
+}
+
+record(calc,"$(P){$(NO)}Ch3:Current") {
+    field(INPA, "$(P){$(NO)}Ch3:Current-I NPP NMS")
+    field(CALC, "(A-20000)*0.000625")
+    field(PREC, "6")
+    field(EGU,  "A")    
+    field(SCAN, "Passive")
+}
+
+record(calc,"$(P){$(NO)}Ch4:Current") {
+    field(INPA, "$(P){$(NO)}Ch4:Current-I NPP NMS")
+    field(CALC, "(A-20000)*0.000625")
+    field(PREC, "6")
+    field(EGU,  "A")    
+    field(SCAN, "Passive")
+}
+
+
+
+# Channel 1 Relay Command
+record(mbbo, "$(P){$(NO)}Ch1:Relay-SP") {
+  field(DESC, "Relay select")
+  field(DTYP, "Soft Channel")
+  field(ZRST, "All Off")
+  field(ONST, "Output 1")
+  field(TWST, "Output 2")
+  field(THST, "Output 3")
+  field(FRST, "Output 4")
+  field(FVST, "Output 5")
+  field(SXST, "Output 6")
+  field(ZRVL, "0")  
+  field(ONVL, "1")  
+  field(TWVL, "2")  
+  field(THVL, "3") 
+  field(FRVL, "4") 
+  field(FVVL, "5")  
+  field(SXVL, "6")  
+  field(FLNK, "$(P){$(NO)}Ch1:RelayRVal")
+}
+
+record(calcout, "$(P){$(NO)}Ch1:RelayRVal") {
+  field(DESC, "Copy Relay:Number.RVAL")
+  field(INPA, "$(P){$(NO)}Ch1:Relay-SP.RVAL NPP NMS")
+  field(CALC, "A")
+  field(OCAL, "A")
+  field(OOPT, "Every Time")
+  field(OUT,  "$(P){$(NO)}:Ch1-RelayWriteUDP PP")
+}
+
+record(longout, "$(P){$(NO)}:Ch1-RelayWriteUDP") {       
+  field(DTYP, "PSC Single I32")
+  field(OUT , "@pscudp$(NO) 85 1")   
+  field(FLNK, "$(P){$(NO)}:send")
+  #field(SCAN, "1 second")
+}
+
+
+# Channel 2 Relay Command
+record(mbbo, "$(P){$(NO)}Ch2:Relay-SP") {
+  field(DESC, "Relay select")
+  field(DTYP, "Soft Channel")
+  field(ZRST, "All Off")
+  field(ONST, "Output 1")
+  field(TWST, "Output 2")
+  field(THST, "Output 3")
+  field(FRST, "Output 4")
+  field(FVST, "Output 5")
+  field(SXST, "Output 6")
+  field(ZRVL, "0")  
+  field(ONVL, "1")  
+  field(TWVL, "2")  
+  field(THVL, "3") 
+  field(FRVL, "4") 
+  field(FVVL, "5")  
+  field(SXVL, "6")  
+  field(FLNK, "$(P){$(NO)}Ch2:RelayRVal")
+}
+
+# Forwards the RVAL to be written to UDP
+record(calcout, "$(P){$(NO)}Ch2:RelayRVal") {
+  field(DESC, "Copy Relay:Number.RVAL")
+  field(INPA, "$(P){$(NO)}Ch2:Relay-SP.RVAL NPP NMS")
+  field(CALC, "A")
+  field(OCAL, "A")
+  field(OOPT, "Every Time")
+  field(OUT,  "$(P){$(NO)}:Ch2-RelayWriteUDP PP")
+}
+
+
+# writes the UDP packet to the PDU to get status (1Hz)
+record(longout, "$(P){$(NO)}:Ch2-RelayWriteUDP") {       
+  field(DTYP, "PSC Single I32")
+  field(OUT , "@pscudp$(NO) 85 2")   
+  field(FLNK, "$(P){$(NO)}:send")
+  #field(SCAN, "1 second")
+}
+
+
+# Channel 3 Relay Command
+record(mbbo, "$(P){$(NO)}Ch3:Relay-SP") {
+  field(DESC, "Relay select")
+  field(DTYP, "Soft Channel")
+  field(ZRST, "All Off")
+  field(ONST, "Output 1")
+  field(TWST, "Output 2")
+  field(THST, "Output 3")
+  field(FRST, "Output 4")
+  field(FVST, "Output 5")
+  field(SXST, "Output 6")
+  field(ZRVL, "0")  
+  field(ONVL, "1")  
+  field(TWVL, "2")  
+  field(THVL, "3") 
+  field(FRVL, "4") 
+  field(FVVL, "5")  
+  field(SXVL, "6")  
+  field(FLNK, "$(P){$(NO)}Ch3:RelayRVal")
+}
+
+# Forwards the RVAL to be written to UDP
+record(calcout, "$(P){$(NO)}Ch3:RelayRVal") {
+  field(DESC, "Copy Relay:Number.RVAL")
+  field(INPA, "$(P){$(NO)}Ch3:Relay-SP.RVAL NPP NMS")
+  field(CALC, "A")
+  field(OCAL, "A")
+  field(OOPT, "Every Time")
+  field(OUT,  "$(P){$(NO)}:Ch3-RelayWriteUDP PP")
+}
+
+
+# writes the UDP packet to the PDU to get status (1Hz)
+record(longout, "$(P){$(NO)}:Ch3-RelayWriteUDP") {       
+  field(DTYP, "PSC Single I32")
+  field(OUT , "@pscudp$(NO) 85 3")   
+  field(FLNK, "$(P){$(NO)}:send")
+  #field(SCAN, "1 second")
+}
+
+
+# Channel 4 Relay Command
+record(mbbo, "$(P){$(NO)}Ch4:Relay-SP") {
+  field(DESC, "Relay select")
+  field(DTYP, "Soft Channel")
+  field(ZRST, "All Off")
+  field(ONST, "Output 1")
+  field(TWST, "Output 2")
+  field(THST, "Output 3")
+  field(FRST, "Output 4")
+  field(FVST, "Output 5")
+  field(SXST, "Output 6")
+  field(ZRVL, "0")  
+  field(ONVL, "1")  
+  field(TWVL, "2")  
+  field(THVL, "3") 
+  field(FRVL, "4") 
+  field(FVVL, "5")  
+  field(SXVL, "6")  
+  field(FLNK, "$(P){$(NO)}Ch4:RelayRVal")
+}
+
+# Forwards the RVAL to be written to UDP
+record(calcout, "$(P){$(NO)}Ch4:RelayRVal") {
+  field(DESC, "Copy Relay:Number.RVAL")
+  field(INPA, "$(P){$(NO)}Ch4:Relay-SP.RVAL NPP NMS")
+  field(CALC, "A")
+  field(OCAL, "A")
+  field(OOPT, "Every Time")
+  field(OUT,  "$(P){$(NO)}:Ch4-RelayWriteUDP PP")
+}
+
+
+# writes the UDP packet to the PDU to get status (1Hz)
+record(longout, "$(P){$(NO)}:Ch4-RelayWriteUDP") {       
+  field(DTYP, "PSC Single I32")
+  field(OUT , "@pscudp$(NO) 85 4")   
+  field(FLNK, "$(P){$(NO)}:send")
+  #field(SCAN, "1 second")
+}
+
+
+
+
+
